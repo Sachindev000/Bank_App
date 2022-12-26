@@ -1,0 +1,43 @@
+<div class="parent">
+    <h1 class="text-center p-4 "> {{user}}</h1>
+     <div class="text-center"><a routerLink="/transaction" >View Transaction History</a></div>
+    <div class="child">
+        <div class="row">
+    
+            <!-- <div class="col"></div> -->
+            <div  class="col">
+                <div id="login" class="text-center"><br>
+                    <form action="" (ngSubmit)="deposit()">
+                 <h1 style="  color:  rgb(7, 57, 149); font-family:'Times New Roman', Times, serif">Deposit</h1><br>
+                <input  [(ngModel)]="acno" class="in" type="text" id="depo_accno" name="accno" placeholder="Account Number"><br>
+                <input  [(ngModel)]="pswd" class="in" type="password" id="depo_pass" name="pass"  placeholder="Password"><br>
+                <input  [(ngModel)]="amount" class="in" type="text" id="depo_amount" name="uname" placeholder="Amount"><br><br>
+
+                <button type="submit" class="btn btn-primary" value="Register">Deposit</button><br>
+            </form>
+                </div>
+                
+            </div>
+            <div class="col">
+                <div class="row ">
+                    <!-- <div class="col"></div> -->
+                    <div  class="col">
+                        <div id="login" class="text-center"><br>
+                            <form action="" (ngSubmit)="withdraw()">
+                         <h1 style=" color:  rgb(7, 57, 149); font-family:'Times New Roman', Times, serif">Withdraw</h1><br>
+                        <input  [(ngModel)]="acno1" class="in" type="text" id="depo_accno" name="accno" placeholder="Account Number"><br>
+                        <input  [(ngModel)]="pswd1" class="in" type="password" id="depo_pass" name="pass"  placeholder="Password"><br>
+                        <input  [(ngModel)]="amount1" class="in" type="text" id="depo_amount" name="uname" placeholder="Amount"><br><br>
+        
+                        <button type="submit" class="btn btn-primary" value="Register" >Withdraw</button><br>
+                    </form>
+                        </div>
+                        
+                    </div>
+            </div>
+        </div>
+    </div>
+    <div class="child">
+        
+    </div>
+</div>

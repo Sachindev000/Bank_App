@@ -1,0 +1,21 @@
+<body>
+    <div class="row">
+        <div class="col"></div>
+        <div class="col">
+            <div class="login">
+                <form action="" (ngSubmit)="login()">
+                <img src="" alt="">
+                <h1 class="text-center">BANK</h1>
+                <h4 class="text-center">{{demo}}</h4> <br>
+                <input [(ngModel)]="acno" type="text" id="log_acno" name="log_acno" [placeholder]="aim"><br>
+                <input [(ngModel)]="pswd" type="password" id="log_pass" name="log_pass" placeholder="Password"><br>
+                <br><br><button class="btn form-control" type="submit" (click)="login()">Login</button> <br>
+                <br>Don't have an Account..?&nbsp;&nbsp;<a routerLink="register">Sign Up</a>
+            </form>
+            </div>
+            <div>
+            </div>
+        </div>
+        <div class="col"></div>
+    </div>
+</body>

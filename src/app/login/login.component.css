@@ -1,0 +1,51 @@
+input{
+    width: 350px;
+    height: 40px;
+    margin-top: 10px;
+    border: 0px;
+    border-radius: 15px;
+    border-bottom: 1px ridge rgba(0, 0, 0, 0.582) ;
+}
+h1{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    font-weight: 700;
+    color:  rgb(7, 57, 149);
+}
+h4{
+    font-size: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 25px;
+    font-weight: 700;
+    color: rgb(7, 57, 149);
+}
+
+
+.login{
+    border: 1px solid rgba(19, 18, 18, 0.363);
+    box-shadow: 0 0 10px ;
+    width: 450px;
+    height: 500px;
+    padding: 40px;
+    margin: 100px;
+    border-radius: 15px;
+    background-color:rgba(255, 255, 255, 0.852);
+   
+}
+img{
+    width: 100px;
+    display: block;
+    margin: auto;
+    margin-bottom: 10px;
+}
+.btn{
+    width: 50%;
+    margin-left: 72px;
+    background-color: aliceblue;
+    color: black;
+}
+.btn:hover{
+    background-color: rgb(7, 57, 149);
+    
+}

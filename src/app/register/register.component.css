@@ -1,0 +1,30 @@
+#login{
+    margin-top: 100px;
+    /* background-color: black; */
+    width: 500px;
+    height: 400px;
+    border: 1px ridge rgba(87, 85, 85, 0.356);
+    box-shadow: 0px 0px 15px;
+    border-radius: 20px;
+    transition: all;
+    transition-duration: 1s;
+    
+}
+.in{
+    border-color: black; 
+    border: 0;
+    border-bottom: 2px ridge;
+}
+.in, .btn{
+    width: 350px;
+    height: 35px;
+    margin-top: 10px;
+}
+a{
+    
+    text-decoration: none;
+}
+#login:hover{
+
+    background-color: rgba(255, 255, 255, 0.637);
+}
