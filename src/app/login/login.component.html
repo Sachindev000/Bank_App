@@ -3,12 +3,18 @@
         <div class="col"></div>
         <div class="col">
             <div class="login">
-                <form action="" (ngSubmit)="login()">
-                <img src="" alt="">
-                <h1 class="text-center">BANK</h1>
+                <form action="" (ngSubmit)="login()" [formGroup]="loginForm">
+                <img src="/src/assets/images/pngwing.com (1).png" alt="">
+                <h1 class="text-center">IBM</h1>
                 <h4 class="text-center">{{demo}}</h4> <br>
-                <input [(ngModel)]="acno" type="text" id="log_acno" name="log_acno" [placeholder]="aim"><br>
-                <input [(ngModel)]="pswd" type="password" id="log_pass" name="log_pass" placeholder="Password"><br>
+                <input formControlName="acno" type="text" id="log_acno" name="acno" [placeholder]="aim"><br>
+                <div *ngIf="this.loginForm.get('acno')?.errors && this.loginForm.get('acno')?.touched">
+                    <p class="text-danger">Invalid Account No</p>
+                </div>
+                <input formControlName="psw" type="password" id="log_pass" name="psw" placeholder="Password"><br>
+                <div *ngIf="this.loginForm.get('psw')?.errors && this.loginForm.get('psw')?.touched">
+                    <p class="text-danger">Invalid password</p>
+                </div>
                 <br><br><button class="btn form-control" type="submit" (click)="login()">Login</button> <br>
                 <br>Don't have an Account..?&nbsp;&nbsp;<a routerLink="register">Sign Up</a>
             </form>

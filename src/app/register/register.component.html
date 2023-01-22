@@ -2,15 +2,27 @@
         <div class="col"></div>
         <div  class="col">
             <div id="login" class="text-center"><br>
-             <h1 style=" color: rgb(66, 61, 61); font-family:'Times New Roman', Times, serif">My Bank</h1><br>
-            <input  [(ngModel)]="uname" class="in" type="text" id="uname" name="uname" placeholder="Username"><br>
-            <input  [(ngModel)]="acno" class="in" type="text" id="accno" name="accno" placeholder="Account Number"><br>
-            <input  [(ngModel)]="pswd" class="in" type="password" id="pass" name="pass"  placeholder="Password"><br><br>
-            <button type="submit" class="btn btn-primary" value="Register" (click)="register()">Register</button><br>
+                <form action="" (ngSubmit)="register()" [formGroup]="registerForm">
+             <h1 style=" color: rgb(7, 57, 149); font-family: 'Times New Roman', Times, serif; font-weight: 700;">IBM <br> Online Registration</h1><br>
+            <input  class="in" type="text" id="uname" name="uname" formControlName="uname" placeholder="Username"><br>
+            <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+                <p class="text-danger">Invalid Username</p>
+            </div>
+            <input   class="in" type="text" id="accno" name="acno" formControlName="acno" placeholder="Account Number"><br>
+            <div *ngIf="this.registerForm.get('uname')?.errors && this.registerForm.get('uname')?.touched">
+                <p class="text-danger">InValid Account No</p>
+            </div>
+            <input   class="in" type="password" id="pass" name="psw" formControlName="psw"  placeholder="Password"><br><br>
+            <div *ngIf="this.registerForm.get('psw')?.errors && this.registerForm.get('uname')?.touched">
+                <p class="text-danger">InValid  Password</p>
+            </div>
+            <button type="submit" class="btn btn-primary" value="Register">Register</button><br>
             <br><br><a href="">Forgot Password...?</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             <a routerLink="">Login...?</a>
+        </form>
             </div>
-            
+             
         </div>
+    
         <div class="col"></div>
     </div>

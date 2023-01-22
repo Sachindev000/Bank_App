@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../Services/data.service';
 
@@ -14,9 +15,13 @@ export class LoginComponent implements OnInit {
     aim="Account Number"
 
     acno:any
-    pswd:any
+    psw:any
     
-  constructor(private router:Router , private ds:DataService) { }
+  constructor(private router:Router , private ds:DataService,private fb:FormBuilder) { }
+
+  loginForm=this.fb.group({
+    acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+  psw:['',[Validators.required,Validators.pattern('[0-9]+')]]})
 
   ngOnInit(): void {
   }
@@ -26,8 +31,8 @@ export class LoginComponent implements OnInit {
     console.log(this.acno);
   }
   pswdChange(event:any){
-    this.pswd=event.target.value
-    console.log(this.pswd);
+    this.psw=event.target.value
+    console.log(this.psw);
     
   }
 
@@ -50,19 +55,29 @@ export class LoginComponent implements OnInit {
   // }
   
   login(){
-    var acno=this.acno
-    var pswd=this.pswd
-    var userDetails=this.ds.userDetails
+    var acno=this.loginForm.value.acno
+    var psw=this.loginForm.value.psw
+    // var userDetails=this.ds.userDetails
+    if(this.loginForm.valid){
+      this.ds.login(acno,psw).subscribe((result:any)=>{
 
-    const result=this.ds.login(acno,pswd)
+        localStorage.setItem('currentacno',JSON.stringify(result.currentAcno))
+        localStorage.setItem('currentuser',JSON.stringify(result.currentUser))
+        localStorage.setItem('token',JSON.stringify(result.token))
 
+        alert(result.message)
 
-    if(result){
-      alert('Login successful');
-      this.router.navigateByUrl('dashboard')
-    }
-    else{
-      alert('Login failed')
-    }
+        this.router.navigateByUrl('dashboard')
+      },
+      result=>{
+        alert(result.error.message)
+      }
+      
+      )
+    
   }
+  else{
+    alert('invalid form')
+  }
+}
 }

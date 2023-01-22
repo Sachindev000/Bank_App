@@ -18,15 +18,21 @@
     border: 0;
     border-bottom: 2px ridge;
 }
-.in, .btn{
-    width: 300px;
+.in{
+    width: 350px;
     height: 35px;
     margin-top: 10px;
     border-radius: 10px;
 }
+.btn{
+width: 150px;
+}
 a{
-    
+    background-color: rgb(240, 248, 255);
+    border-radius: 5px;
+    color:  rgb(7, 57, 149);
     text-decoration: none;
+    padding: 12px;
 }
 #login:hover{
 

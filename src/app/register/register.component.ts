@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DataService } from '../Services/data.service';
 
@@ -9,31 +10,42 @@ import { DataService } from '../Services/data.service';
 })
 export class RegisterComponent implements OnInit {
 
-  uname:any
-  acno:any
-  pswd:any
+  // uname:any
+  // acno:any
+  // pswd:any
 
-  constructor(private router:Router , private ds:DataService) { }
+  constructor(private router:Router , private ds:DataService,private fb:FormBuilder) { }
+
+  registerForm=this.fb.group({uname:['',[Validators.required,Validators.pattern('[a-z A-Z]+')]],
+  acno:['',[Validators.required,Validators.pattern('[0-9]+')]],
+  psw:['',[Validators.required,Validators.pattern('[0-9]+')]]})
 
   ngOnInit(): void {
   }
 
   register(){
 
-    var username=this.uname
-    var accno=this.acno
-    var password=this.pswd
+    var uname=this.registerForm.value.uname
+    var acno=this.registerForm.value.acno
+    var psw=this.registerForm.value.psw
 
-    const result=this.ds.register(username,accno,password)
-    if(result){
-      alert('Register Succesful')
-      this.router.navigateByUrl('')
-    }
-    else{
-      alert('Register failed')   
-      this.router.navigateByUrl('register')
-    }
-
+    if(this.registerForm.valid){
+      
+   this.ds.register(uname,acno,psw).subscribe((result:any)=>{
+    alert(result.message)
+    this.router.navigateByUrl('')
+   },
+   result=>{
+    alert(result.error.message)
+    this.router.navigateByUrl('')
+   }
+   
+   
+   )
   }
+  else{
+    alert('invalid form')
+  }
+}
 
 }

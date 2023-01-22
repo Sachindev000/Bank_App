@@ -1,6 +1,6 @@
-<div class="row">
-    <div class="col">
-        <button class="btn btn danger">Yes</button>
-        <button class="btn btn-success">No</button>
-    </div>
+<div *ngIf="item" class="container w-50 text-center p-5 mt-5" style="background: rgba(255, 255, 255, 0.67); border-radius: 20px;">
+
+    <h4>Do you Sure You Want To Delete Your Account? {{item}}</h4>
+    <button (click)="delete()" class="btn btn-danger ms-3">Yes</button> 
+    <button (click)="cancel()" class="btn btn-primary ms-3">No</button>
 </div>

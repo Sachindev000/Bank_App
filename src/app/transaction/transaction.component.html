@@ -1,19 +1,20 @@
-<h1 style="color: blue; text-align: center;">Transaction History</h1>
-
-<table>
-    <thead>
-        <tr>
-            <th>Type</th>
-            <th>Amount</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr *ngFor="let i of transaction">
-            <td>{{i.type}}</td>
-            <td>{{i.amount}}</td>
-        </tr>
-
-    </tbody>
-</table>
-
-<a routerLink="/dashboard">Back to Dashboard</a>
+<div class="main container w-50 p-5 mt-5 ">
+    <h2 class="text text-center ">Transaction history</h2>
+    <table class="w-100 text-center mt-5">
+        <thead class="border border">
+            <tr class="border border">
+                <th class="border border-dark bg-primary">Type</th>
+                <th class="border border-dark bg-primary">Amount</th>
+            </tr>
+        </thead>
+        <tbody class="border border">
+            <tr *ngFor="let i of transaction" class="border border" style="background-color: white;">
+                <td class="border border-dark">{{i.type}}</td>
+                <td class="border border-dark">{{i.amount}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a routerLink="/dashboard">Back to Dashboard</a>
+</div>

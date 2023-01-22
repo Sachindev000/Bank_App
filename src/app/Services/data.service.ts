@@ -1,4 +1,12 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
+//globel overloading headers
+const option={
+
+  headers:new HttpHeaders()
+}
+
 
 @Injectable({
   providedIn: 'root'
@@ -8,106 +16,89 @@ export class DataService {
   currentUser:any
 
   currentAcno=""
+  userDetails:any 
 
 
 
   
-  userDetails:any={
-    1000:{acno:1000,username:"Amal",password:1000,balance:0,transaction:[]},
-    1001:{acno:1001,username:"Arju",password:1001,balance:0,transaction:[]},
-    1002:{acno:1002,username:"David",password:1002,balance:0,transaction:[]}
-  }
+  // userDetails:any={
+  //   1000:{acno:1000,username:"Amal",password:1000,balance:0,transaction:[]},
+  //   1001:{acno:1001,username:"Arju",password:1001,balance:0,transaction:[]},
+  //   1002:{acno:1002,username:"David",password:1002,balance:0,transaction:[]}
+  // }
 
-  constructor() { }
+  constructor(private http:HttpClient) { 
 
-  register(username:any,accno:any,password:any){
-    let userDetails = this.userDetails
-    if(accno in userDetails){
-      return false
-    }
-    else{
-      userDetails[accno]={
-        accno:accno,
-        username:username,
-        password:password,
-        balance:0,
-        transaction:[]
-      }
-      console.log(userDetails);
-      return true
-      
-    }
-  }
-
-  login(acno:any,pswd:any){
-    let userDetails=this.userDetails
-    if(acno in userDetails){
-      if(pswd==userDetails[acno]['password']){
-        this.currentUser=userDetails[acno]['username']
-        this.currentAcno=acno
-        return true;
-      }
-      else{
-        return false
-      }
-    }
-    else{
-      return false;
-    }
   }
 
 
-  deposit(acno:any,pswd:any,amt:any){
-    let userDetails=this.userDetails
-    var amount=parseInt(amt)
-    if(acno in userDetails){
-      if(pswd==userDetails[acno]['password']){
-        userDetails[acno]['balance']+=amount
-        userDetails[acno]['transaction'].push({
-          type:'CREDIT',
-          amount:amt
-        })
-        console.log(userDetails);
-        
-        return userDetails[acno]['balance']
-      }
-      else{
-        alert('Password Incorrect')
-        return false
-      }
+
+
+gettoken(){
+ const token=JSON.parse (localStorage.getItem('token') ||'')
+
+ let headers=new HttpHeaders()
+
+ 
+ if(token){
+
+  option.headers=headers.append('access-token',token)
+ }
+ return option
+}
+
+  register(uname:any,acno:any,psw:any){
+
+    const data={
+      acno,uname,psw
     }
-    else{
-      alert('Invalid userDetails')
-      return false
-    }
+    return this.http.post('http://localhost:3000/register',data)
+    
   }
-  withdraw(acno:any,pswd:any,amt:any){
-    let userDetails=this.userDetails
-    var amount=parseInt(amt)
-    if(acno in userDetails){
-      if(pswd==userDetails[acno]['password']){
-        if(userDetails[acno]['balance']>amount){
-        userDetails[acno]['balance']-=amount
-        userDetails[acno]['transaction'].push({
-          type:'DEBIT',
-          amount:amt
-        })
-        return userDetails[acno]['balance']
-      }
-      else{
-        alert('Password Incorrect')
-        return false
-      }
+
+  login(acno:any,psw:any){
+    
+    const data={
+      acno,psw
     }
-    else{
-      alert('Invalid userDetails')
-      return false
-    }
+    return this.http.post('http://localhost:3000/login',data)
   }
+
+
+  deposit(acno:any,psw:any,amt:any){
+
+    const data={
+      acno,psw,amt
+    }
+    return this.http.post('http://localhost:3000/deposit',data,this.gettoken())
+    
+  }
+
+
+
+  withdraw(acno:any,psw:any,amt:any){
+    const data={
+      acno,psw,amt
+    }
+
+
+    return this.http.post('http://localhost:3000/withdraw',data,this.gettoken())
+    
+   
 }
 
 gettransaction(acno:any){
-  return this.userDetails[acno]["transaction"]
+  const data={
+    acno
+  }
+
+
+  return this.http.post('http://localhost:3000/transaction',data,this.gettoken())
+}
+deleteacc(acno:any){
+  return this.http.delete('http://localhost:3000/deleteacc/'+acno,this.gettoken())
+
+
 }
 
 }
